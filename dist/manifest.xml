@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xsi:type="TaskPaneApp">
+  
+  <Id>12345678-1234-1234-1234-123456789012</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Code.is.sa</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Financial Tools"/>
+  <Description DefaultValue="Professional financial statement generator for Excel"/>
+  <IconUrl DefaultValue="https://www.contoso.com/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://www.contoso.com/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://www.code.is.sa"/>
+  
+  <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+  </AppDomains>
+  
+  <Hosts>
+    <Host Name="Workbook"/>
+  </Hosts>
+  
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://www.contoso.com/taskpane.html"/>
+  </DefaultSettings>
+  
+  <Permissions>ReadWriteDocument</Permissions>
+  
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <!-- Custom Tab on Ribbon -->
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="FinancialToolsTab">
+              <Group id="FinancialStatementsGroup">
+                <Label resid="FinancialStatementsGroupLabel"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                
+                <!-- Balance Sheet Button -->
+                <Control xsi:type="Button" id="BalanceSheetButton">
+                  <Label resid="BalanceSheetButtonLabel"/>
+                  <Supertip>
+                    <Title resid="BalanceSheetButtonLabel"/>
+                    <Description resid="BalanceSheetButtonTooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>createBalanceSheet</FunctionName>
+                  </Action>
+                </Control>
+                
+                <!-- Cash Flow Button -->
+                <Control xsi:type="Button" id="CashFlowButton">
+                  <Label resid="CashFlowButtonLabel"/>
+                  <Supertip>
+                    <Title resid="CashFlowButtonLabel"/>
+                    <Description resid="CashFlowButtonTooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>createCashFlowStatement</FunctionName>
+                  </Action>
+                </Control>
+                
+                <!-- Income Statement Button -->
+                <Control xsi:type="Button" id="IncomeStatementButton">
+                  <Label resid="IncomeStatementButtonLabel"/>
+                  <Supertip>
+                    <Title resid="IncomeStatementButtonLabel"/>
+                    <Description resid="IncomeStatementButtonTooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>createIncomeStatement</FunctionName>
+                  </Action>
+                </Control>
+                
+                <!-- Task Pane Button -->
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButtonLabel"/>
+                  <Supertip>
+                    <Title resid="TaskpaneButtonLabel"/>
+                    <Description resid="TaskpaneButtonTooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+                
+              </Group>
+              <Label resid="FinancialToolsTabLabel"/>
+            </CustomTab>
+          </ExtensionPoint>
+          
+          <!-- Function file location -->
+          <FunctionFile resid="Commands.Url"/>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://www.contoso.com/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://www.contoso.com/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://www.contoso.com/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://www.contoso.com/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://www.contoso.com/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="FinancialToolsTabLabel" DefaultValue="Financial Tools"/>
+        <bt:String id="FinancialStatementsGroupLabel" DefaultValue="Statements"/>
+        <bt:String id="BalanceSheetButtonLabel" DefaultValue="Balance Sheet"/>
+        <bt:String id="CashFlowButtonLabel" DefaultValue="Cash Flow"/>
+        <bt:String id="IncomeStatementButtonLabel" DefaultValue="Income Statement"/>
+        <bt:String id="TaskpaneButtonLabel" DefaultValue="Customize"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="BalanceSheetButtonTooltip" DefaultValue="Generate a standard balance sheet"/>
+        <bt:String id="CashFlowButtonTooltip" DefaultValue="Generate a statement of cash flows"/>
+        <bt:String id="IncomeStatementButtonTooltip" DefaultValue="Generate an income statement"/>
+        <bt:String id="TaskpaneButtonTooltip" DefaultValue="Open form to customize financial statements"/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
